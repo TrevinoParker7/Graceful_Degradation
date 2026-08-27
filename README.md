@@ -2,6 +2,8 @@
 
 ## Windows 11 Local-Only Agentic AI Graceful Degradation Security OS
 
+<img width="1672" height="941" alt="ChatGPT Image Aug 27, 2026, 01_53_04 PM" src="https://github.com/user-attachments/assets/b54a8168-f048-4ed2-b66d-78a96270d086" />
+
 GracefulOS is a **Windows 11-native security control plane and operating layer for autonomous AI agents**.
 
 Instead of allowing an AI agent to directly and unrestricted execute PowerShell, manipulate the filesystem, make arbitrary network calls, or launch uncontrolled child processes, GracefulOS sits between the agent and Windows to continuously evaluate risk, enforce granular capabilities, enforce blast-radius budgets, and dynamically degrade agent authority in real time.
