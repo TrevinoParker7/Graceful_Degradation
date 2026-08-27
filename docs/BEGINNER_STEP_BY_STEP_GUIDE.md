@@ -17,12 +17,24 @@ This guide is written for anyone who has never used a security OS or coding tool
 
 ## 📥 Step 2: Download the Project
 
-### If you are getting it from GitHub:
+### Option A: The Fast Terminal Way (`git clone`)
+Open PowerShell or Command Prompt and run:
+```powershell
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+cd Graceful_Degradation
+.\install.bat
+.\start.bat
+```
+*(That's it! Your browser will open automatically)*
+
+---
+
+### Option B: The Web Browser Way (Download ZIP)
 1. Go to the GitHub repository page.
 2. Click the green **`<> Code`** button near the top right.
 3. Click **`Download ZIP`**.
-4. Once downloaded, right-click the `.zip` file in your Downloads folder and click **`Extract All...`**, then click **`Extract`**.
-5. Open the extracted folder.
+4. Right-click the downloaded `.zip` file → click **`Extract All...`** → click **`Extract`**.
+5. Open the folder and double-click **`install.bat`**.
 
 ---
 
