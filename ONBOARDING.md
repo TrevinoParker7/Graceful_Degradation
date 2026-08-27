@@ -46,22 +46,42 @@ git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git; cd Graceful_Degr
 
 ---
 
-## 🤖 How to Connect Any AI Agent (5 Lines of Code)
+## 🤖 How to Connect Any AI Agent (For Developers)
 
-If you or a developer write a Python script or AI assistant, route its actions through GracefulOS:
+*(Note: Regular users don't need to write any code! This section is only for developers building AI programs.)*
 
+### 🎯 What is this for? (The Problem & The Solution)
+- **The Problem**: If an AI runs directly on your Windows PC with full access, a confused or hacked AI could delete your files, run dangerous PowerShell scripts, or steal passwords.
+- **The GracefulOS Solution**: GracefulOS acts like a **Security Guard** standing between the AI and Windows 11. The AI must ask GracefulOS for permission before touching the computer.
+
+```text
+[ AI Agent ] ──► "Can I read this file?" ──► [ GracefulOS Security Guard ] ──► [ Windows 11 ]
+                                                    │
+                                     ┌──────────────┴──────────────┐
+                                     ▼                             ▼
+                            If SAFE: "ALLOW"              If DANGEROUS: "DENY & FREEZE"
+```
+
+---
+
+### 🔍 Step-by-Step Code Example:
+
+#### Step 1: The AI introduces itself to GracefulOS
 ```python
 import requests
 
-# 1. Register the AI agent
+# The AI tells GracefulOS its name and mission
 requests.post("http://127.0.0.1:7777/api/v1/agents/register", json={
     "agent_id": "my-ai-coder",
     "name": "Local Coding Assistant",
-    "mission": "Refactor codebase",
-    "model": "local-assistant"
+    "mission": "Write code and tests"
 })
+```
+> **What this does**: GracefulOS creates a secure sandbox for the AI and sets its risk score to `0 / 100`.
 
-# 2. Safely execute any tool through GracefulOS
+#### Step 2: The AI asks permission to do an action (like reading a file)
+```python
+# The AI asks permission to read README.md
 response = requests.post("http://127.0.0.1:7777/api/v1/tools/invoke", json={
     "agent_id": "my-ai-coder",
     "tool_name": "read_file",
@@ -70,6 +90,21 @@ response = requests.post("http://127.0.0.1:7777/api/v1/tools/invoke", json={
 
 print(response.json())
 ```
+> **What this does**: GracefulOS verifies the file is safe and returns the content: `{"success": true, "content": "..."}`.
+
+#### Step 3: What happens if the AI tries something dangerous?
+If the AI tries to run a dangerous command (like deleting folders):
+```python
+response = requests.post("http://127.0.0.1:7777/api/v1/tools/invoke", json={
+    "agent_id": "my-ai-coder",
+    "tool_name": "powershell",
+    "arguments": {"command": "Remove-Item C:\\Users\\* -Recurse"}
+})
+```
+> **What GracefulOS does**:
+> 1. GracefulOS blocks the command and responds: `{"success": false, "error": "Dangerous command blocked"}`.
+> 2. GracefulOS increases the AI's risk score from `0` to `50` (`RESTRICTED`).
+> 3. If the AI keeps attacking, GracefulOS triggers the **emergency kill switch** (`CONTAINED`), terminating the process in the Windows kernel!
 
 ---
 
