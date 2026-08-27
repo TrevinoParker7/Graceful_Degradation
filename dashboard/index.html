@@ -343,13 +343,24 @@
     <!-- TAB 15: SETTINGS & TRIPWIRES -->
     <section id="tab-settings" class="tab-panel">
       <div class="glass-card" style="margin-bottom:20px;">
-        <h3 style="margin-bottom:16px;">Canary Decoy Tripwires</h3>
-        <p style="color:var(--text-secondary); font-size:13px; margin-bottom:12px;">Active decoy files monitored for unauthorized access:</p>
-        <ul class="mono" style="padding-left:20px; font-size:12px; color:var(--accent-cyan); line-height:1.8;">
-          <li>runtime/canary/fake_admin_token.txt (+60 Risk)</li>
-          <li>runtime/canary/fake_cloud_key.txt (+60 Risk)</li>
-          <li>runtime/canary/fake_password.txt (+60 Risk)</li>
-        </ul>
+        <h3 style="margin-bottom:16px;">🪤 High-Fidelity Cyber Deception Canaries (Thinkst & MITRE D3FEND)</h3>
+        <p style="color:var(--text-secondary); font-size:13px; margin-bottom:12px;">Active authentic decoy assets seeded on disk with backdated timestamps (180 days ago) and token-in-use detection (+60 Risk):</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Decoy Asset File</th><th>Deception Type</th><th>Simulated Credentials</th><th>Age</th><th>Penalty</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="mono" style="color:var(--accent-cyan);">runtime/canary/.env.production</td><td>Production Environment</td><td class="mono" style="font-size:11px;">sk-proj-... / Stripe / DB Host</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+              <tr><td class="mono" style="color:var(--accent-cyan);">runtime/canary/aws_credentials.json</td><td>AWS Cloud Root Access</td><td class="mono" style="font-size:11px;">AKIAIOSFODNN7EXAMPLE</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+              <tr><td class="mono" style="color:var(--accent-cyan);">runtime/canary/id_rsa_backup.pem</td><td>SSH Server Private Key</td><td class="mono" style="font-size:11px;">OPENSSH PRIVATE KEY</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+              <tr><td class="mono" style="color:var(--accent-cyan);">runtime/canary/database_backup_config.yaml</td><td>Postgres Cluster Vault</td><td class="mono" style="font-size:11px;">db-master.internal.production</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+              <tr><td class="mono" style="color:var(--accent-cyan);">runtime/canary/stripe_live_keys.env</td><td>Payment Live Gateway</td><td class="mono" style="font-size:11px;">sk_live_51Nz89aK...</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+              <tr><td class="mono" style="color:var(--accent-cyan);">runtime/canary/kubeconfig_cluster_admin.yaml</td><td>Kubernetes Cluster Admin</td><td class="mono" style="font-size:11px;">k8s-prod-master...</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+              <tr><td class="mono" style="color:var(--text-muted);">runtime/canary/fake_admin_token.txt</td><td>Legacy Canary Token</td><td class="mono" style="font-size:11px;">ADMIN_TOKEN_9X9F...</td><td>180d ago</td><td><span class="badge badge-restricted">+60 RISK</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="glass-card">

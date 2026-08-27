@@ -356,8 +356,8 @@ def run_traceability_qa():
 
     # 48. Critical Canary Controls
     canary_def = CANARY_DEFINITIONS
-    record_section_test(48, "Canary Controls", "Decoy tripwires (fake_admin_token, fake_cloud_key, fake_password)",
-                        f"Canaries: {list(canary_def.keys())}", len(canary_def) == 3)
+    record_section_test(48, "Canary Controls", "Decoy tripwires (authentic .env.production, aws_credentials, id_rsa, etc.)",
+                        f"Canaries: {list(canary_def.keys())}", len(canary_def) >= 3)
 
     # 49. GracefulOS Self-Protection
     prot_res = policy_engine.evaluate_request("sec49-agent", "powershell", {"command": "Stop-Service GracefulOS"})

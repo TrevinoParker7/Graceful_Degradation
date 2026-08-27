@@ -11,6 +11,7 @@ from core.capabilities.manager import capability_manager
 from core.policy.engine import policy_engine
 from core.risk.engine import risk_engine
 from windows.process.launcher import process_launcher
+from windows.filesystem.canary import canary_manager
 from .analyzer import powershell_analyzer
 
 class PowerShellBroker:
@@ -21,6 +22,33 @@ class PowerShellBroker:
         self, agent_id: str, command: str, cwd: Optional[str] = None
     ) -> Dict[str, Any]:
         """Broker a PowerShell command request."""
+        score_before = risk_engine.get_score(agent_id)
+
+        # 0. Active Canary Tripwire & Token Exfiltration Check
+        if canary_manager.contains_canary_token(command) or canary_manager.is_canary_path(command):
+            await risk_engine.ingest_signal(
+                agent_id=agent_id,
+                signal_code="CANARY_TRIPWIRE_TOUCHED",
+                reason=f"Canary credential tripwire / stolen token exfiltration detected in PowerShell command",
+                metadata={"command": command},
+            )
+            audit_ledger.append_record(
+                agent_id=agent_id,
+                event_type="CANARY_TRIGGERED",
+                action_name="powershell",
+                decision="DENY",
+                risk_score_before=score_before,
+                risk_score_after=risk_engine.get_score(agent_id),
+                degradation_state=risk_engine.get_state(agent_id).value,
+                details={"command": command, "canary_active": True},
+            )
+            return {
+                "success": False,
+                "executed": False,
+                "error": "Access Denied: High-priority canary decoy asset or stolen token detected.",
+                "degradation_state": risk_engine.get_state(agent_id).value,
+            }
+
         # 1. Analyze command syntax and safety
         analysis = self.analyzer.analyze_command(command)
         required_cap = analysis["required_capability"]

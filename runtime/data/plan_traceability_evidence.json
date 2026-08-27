@@ -5,7 +5,7 @@
     "requirement": "Gateway mediator between agent and OS",
     "evidence": "Architecture active on http://127.0.0.1:7777",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 2,
@@ -13,7 +13,7 @@
     "requirement": "Windows 11 local-only, no docker, no cloud DB",
     "evidence": "OS: win32 | Local SQLite DB: C:\\Users\\Elda\\projects2\\Graceful_Degradation\\runtime\\data\\gracefulos.db",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 3,
@@ -21,7 +21,7 @@
     "requirement": "Windows 11 64-bit, Python 3.12+",
     "evidence": "Python 3.14.0 64-bit on Windows",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 4,
@@ -29,7 +29,7 @@
     "requirement": "User-mode control plane over Win32 APIs",
     "evidence": "Win32 ctypes + pywin32 control plane integration",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 5,
@@ -37,7 +37,7 @@
     "requirement": "NORMAL, WATCH, RESTRICTED, READ_ONLY, ISOLATED, CONTAINED",
     "evidence": "States: NORMAL, WATCH, RESTRICTED, READ_ONLY, ISOLATED, CONTAINED",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 6,
@@ -45,7 +45,7 @@
     "requirement": "Risk 0-29.9, standard permissions",
     "evidence": "Score 15.0 -> State: NORMAL",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 7,
@@ -53,7 +53,7 @@
     "requirement": "Risk 30-49.9, increased telemetry",
     "evidence": "Score 40.0 -> State: WATCH",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 8,
@@ -61,7 +61,7 @@
     "requirement": "Risk 50-69.9, remove mutating shell & open net",
     "evidence": "Score 60.0 -> State: RESTRICTED",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 9,
@@ -69,7 +69,7 @@
     "requirement": "Risk 70-84.9, deny filesystem write & mutating MCP",
     "evidence": "Score 75.0 -> State: READ_ONLY",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 10,
@@ -77,7 +77,7 @@
     "requirement": "Risk 85-94.9, block external network, shell & MCP",
     "evidence": "Score 90.0 -> State: ISOLATED",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 11,
@@ -85,7 +85,7 @@
     "requirement": "Risk 95-100, Job Object kill, freeze workspace",
     "evidence": "Score 98.0 -> State: CONTAINED",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 12,
@@ -93,23 +93,23 @@
     "requirement": "Job Objects, Tokens, AppContainer, ACLs, Firewall",
     "evidence": "All 5 Windows security modules active",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 13,
     "title": "Agent Job Object",
     "requirement": "Win32 Job Object handle creation",
-    "evidence": "Job Object Handle: 556",
+    "evidence": "Job Object Handle: 524",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 14,
     "title": "Agent Process Tree",
     "requirement": "Assign PID & terminate process tree via Job Object",
-    "evidence": "Assigned PID 23320 | Terminated via TerminateJobObject",
+    "evidence": "Assigned PID 9384 | Terminated via TerminateJobObject",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 15,
@@ -117,7 +117,7 @@
     "requirement": "AppContainer profile generation & SID resolution",
     "evidence": "Profile Name: Sec15_Profile | SID: S-1-15-2-GracefulOS-Sec15_Profile",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 16,
@@ -125,7 +125,7 @@
     "requirement": "Token with stripped privileges & low integrity",
     "evidence": "Restricted Token Win32 Handle: 692",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 17,
@@ -133,7 +133,7 @@
     "requirement": "Low-integrity SID S-1-16-4096 assignment",
     "evidence": "SECURITY_MANDATORY_LOW_RID (0x1000) mapped",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 18,
@@ -141,7 +141,7 @@
     "requirement": "Untrusted model & agent isolated from control plane",
     "evidence": "Control plane verifies invariants before calling tool brokers",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 19,
@@ -149,7 +149,7 @@
     "requirement": "Unified service runner for GracefulOSCore",
     "evidence": "Service Runner Initialized (is_running: False)",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 20,
@@ -157,7 +157,7 @@
     "requirement": "Single process architecture with background workers",
     "evidence": "Single unified FastAPI / Uvicorn service running on 127.0.0.1:7777",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 21,
@@ -165,7 +165,7 @@
     "requirement": "\\\\.\\pipe\\GracefulOS Win32 message exchange",
     "evidence": "IPC Ping Response: PONG",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 22,
@@ -173,7 +173,7 @@
     "requirement": "Dark-mode dashboard served locally on 127.0.0.1:7777",
     "evidence": "index.html & static assets present in dashboard/",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 23,
@@ -181,15 +181,15 @@
     "requirement": "REST endpoints + WebSocket push telemetry",
     "evidence": "REST /api/v1 + WebSocket /ws/telemetry mounted in FastAPI",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 24,
     "title": "Local SQLite Database",
     "requirement": "SQLite audit ledger with SHA-256 block hash chain",
-    "evidence": "DB Path: C:\\Users\\Elda\\projects2\\Graceful_Degradation\\runtime\\data\\gracefulos.db (Size: 151552 bytes)",
+    "evidence": "DB Path: C:\\Users\\Elda\\projects2\\Graceful_Degradation\\runtime\\data\\gracefulos.db (Size: 204800 bytes)",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 25,
@@ -197,7 +197,7 @@
     "requirement": "In-memory async pubsub bus with priority queues",
     "evidence": "Events dispatched: 1",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 26,
@@ -205,7 +205,7 @@
     "requirement": "runtime/data, runtime/logs, runtime/canary",
     "evidence": "Data: C:\\Users\\Elda\\projects2\\Graceful_Degradation\\runtime\\data | Logs: C:\\Users\\Elda\\projects2\\Graceful_Degradation\\runtime\\logs",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 27,
@@ -213,7 +213,7 @@
     "requirement": "Standardized docs/, core/, windows/, brokers/, models/",
     "evidence": "All 5 top-level packages structured and populated",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 28,
@@ -221,7 +221,7 @@
     "requirement": "Ollama, LM Studio, llama.cpp, OpenAI-compatible local APIs",
     "evidence": "Ollama Adapter Endpoint: http://127.0.0.1:11434",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 29,
@@ -229,15 +229,15 @@
     "requirement": "Guardian AI prompt injection detection with regex fallback",
     "evidence": "Suspicious flag: True (source: deterministic_heuristics)",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:32"
+    "timestamp": "2026-08-27T13:56:43"
   },
   {
     "section": 30,
     "title": "PowerShell Broker",
     "requirement": "Mediate all PowerShell commands through AST analyzer",
-    "evidence": "Execution output: Thursday, August 27, 2026 10:36:33 AM",
+    "evidence": "Execution output: Thursday, August 27, 2026 1:56:44 PM",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 31,
@@ -245,7 +245,7 @@
     "requirement": "CAP_PS_QUERY, CAP_PS_MUTATE, CAP_PS_INSTALL, CAP_PS_REGISTRY",
     "evidence": "Capabilities: CAP_PS_QUERY, CAP_PS_MUTATE",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 32,
@@ -253,7 +253,7 @@
     "requirement": "Get-ChildItem categorized as read query",
     "evidence": "Required Cap: CAP_PS_QUERY",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 33,
@@ -261,15 +261,15 @@
     "requirement": "Remove-Item blocked or flagged as high risk mutate",
     "evidence": "Risk Delta: 50.0 | Dangerous: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 34,
     "title": "Filesystem Broker",
     "requirement": "Path canonicalization, workspace sandbox, traversal guard",
-    "evidence": "Read README.md (4517 bytes)",
+    "evidence": "Read README.md (4624 bytes)",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 35,
@@ -277,7 +277,7 @@
     "requirement": "Physical icacls write denial with WinError 5",
     "evidence": "Kernel Denied: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 36,
@@ -285,7 +285,7 @@
     "requirement": "Domain allowlist enforcement and destination tracking",
     "evidence": "Allowed localhost: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 37,
@@ -293,7 +293,7 @@
     "requirement": "Outbound blocked in ISOLATED / CONTAINED",
     "evidence": "INV-001 enforces zero network under ISOLATED",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 38,
@@ -301,7 +301,7 @@
     "requirement": "Local MCP schema validation & tool dispatch",
     "evidence": "MCP Result: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 39,
@@ -309,15 +309,15 @@
     "requirement": "Direct local Python function tool handlers",
     "evidence": "Registered Tools: ['local_code_search', 'ast_analyzer', 'local_git_status', 'local_git_commit']",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 40,
     "title": "Secret Broker",
     "requirement": "DPAPI encrypted storage & short-lived ephemeral token leases",
-    "evidence": "Token Lease ID: ephem-1bf1d30cf8d4",
+    "evidence": "Token Lease ID: ephem-3d0e5120856a",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 41,
@@ -325,7 +325,7 @@
     "requirement": "TTL lease revocation upon degradation or timeout",
     "evidence": "All agent leases revoked upon containment",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 42,
@@ -333,7 +333,7 @@
     "requirement": "Event Tracing for Windows ingestion and model parser",
     "evidence": "ETW Event Formatted: Microsoft-Windows-Kernel-Process",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 43,
@@ -341,7 +341,7 @@
     "requirement": "0-100 continuous score accumulator & exponential decay",
     "evidence": "Score: 30.0 | State: WATCH",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 44,
@@ -349,15 +349,15 @@
     "requirement": "Dynamic penalty matrix with 15 anomaly signals",
     "evidence": "Total defined risk signals: 15",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 45,
     "title": "Dynamic Capability Manager",
     "requirement": "Dynamic set intersection of WASD and state capabilities",
-    "evidence": "Effective caps at risk 80: ['CAP_FILE_READ', 'CAP_MCP_INVOKE', 'CAP_PROCESS_QUERY']",
+    "evidence": "Effective caps at risk 80: ['CAP_PROCESS_QUERY', 'CAP_FILE_READ', 'CAP_MCP_INVOKE']",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 46,
@@ -365,7 +365,7 @@
     "requirement": "Enforce limits on files, processes, destinations, commands",
     "evidence": "Budget exceeded on 2nd write: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 47,
@@ -373,15 +373,15 @@
     "requirement": "Track child agents, registry mutations, and service calls",
     "evidence": "Blast radius fields track child agents & PowerShell mutations",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 48,
     "title": "Canary Controls",
-    "requirement": "Decoy tripwires (fake_admin_token, fake_cloud_key, fake_password)",
-    "evidence": "Canaries: ['fake_admin_token.txt', 'fake_cloud_key.txt', 'fake_password.txt']",
+    "requirement": "Decoy tripwires (authentic .env.production, aws_credentials, id_rsa, etc.)",
+    "evidence": "Canaries: ['.env.production', 'aws_credentials.json', 'id_rsa_backup.pem', 'database_backup_config.yaml', 'stripe_live_keys.env', 'kubeconfig_cluster_admin.yaml', 'fake_admin_token.txt', 'fake_cloud_key.txt', 'fake_password.txt']",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 49,
@@ -389,7 +389,7 @@
     "requirement": "Prevent tampering with service, DB, or logs",
     "evidence": "Decision: KILL (Allowed: False)",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 50,
@@ -397,7 +397,7 @@
     "requirement": "Hardcoded invariants INV-001 through INV-008",
     "evidence": "All 4 checked invariants rejected illegal actions: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 51,
@@ -405,15 +405,15 @@
     "requirement": "Guardian offline fallback to strict heuristics",
     "evidence": "Fallback detected injection: True",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 52,
     "title": "Dashboard Overview",
     "requirement": "15 distinct views & glassmorphic layout",
-    "evidence": "HTML Size: 16638 bytes with all 15 views",
+    "evidence": "HTML Size: 20007 bytes with all 15 views",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 53,
@@ -421,7 +421,7 @@
     "requirement": "Real-time state and badge updates",
     "evidence": "Telemetry cards for agents, posture, incidents, and ledger",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 54,
@@ -429,7 +429,7 @@
     "requirement": "Risk gauge, effective capabilities, blast radius",
     "evidence": "Risk score gauge and capability chips in UI",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 55,
@@ -437,7 +437,7 @@
     "requirement": "Step-by-step sequential audit playback",
     "evidence": "Interactive timeline player in UI",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 56,
@@ -445,7 +445,7 @@
     "requirement": "Gateway + Risk Engine + PowerShell Broker + Audit",
     "evidence": "Baseline MVP functional and fully integrated",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 57,
@@ -453,7 +453,7 @@
     "requirement": "Job Objects + Process Broker + AppContainer",
     "evidence": "Job object manager with limits and process tree kill active",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 58,
@@ -461,7 +461,7 @@
     "requirement": "NTFS ACLs + Filesystem Sandbox + Canary Tripwires",
     "evidence": "Canary tripwires and NTFS ACL manager active",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 59,
@@ -469,7 +469,7 @@
     "requirement": "Windows Firewall + Network Allowlist",
     "evidence": "Firewall rule management via netsh active",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 60,
@@ -477,7 +477,7 @@
     "requirement": "MCP Gateway + DPAPI Secret Broker",
     "evidence": "MCP schema validation & DPAPI encryption active",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 61,
@@ -485,7 +485,7 @@
     "requirement": "Full 6-level graceful degradation control plane",
     "evidence": "All degradation levels and brokers operational",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 62,
@@ -493,7 +493,7 @@
     "requirement": "Python 3.12+, Win32 ctypes, modern HTML/CSS/JS",
     "evidence": "Zero external heavy runtimes, pure native Windows stack",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 63,
@@ -501,7 +501,7 @@
     "requirement": "Avoid unnecessary multi-language bridging complexity",
     "evidence": "Clean modular Python control plane with ctypes Win32 calls",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 64,
@@ -509,7 +509,7 @@
     "requirement": "PowerShell Broker -> Risk Engine -> Job Object Kill",
     "evidence": "Flagship attack demo connects PowerShell broker to Job Object kill",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 65,
@@ -517,7 +517,7 @@
     "requirement": "Filesystem Sandbox + Canary Tripwires",
     "evidence": "Canary file read triggers immediate +60 score penalty",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 66,
@@ -525,7 +525,7 @@
     "requirement": "Network Broker + Dynamic Windows Firewall Sync",
     "evidence": "Unauthorized network request triggers signal & firewall block",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 67,
@@ -533,7 +533,7 @@
     "requirement": "Automated UI view rendering tests",
     "evidence": "3 dashboard UI tests passing in pytest suite",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 68,
@@ -541,7 +541,7 @@
     "requirement": "Native Win32 kernel API unit tests",
     "evidence": "6 Windows kernel tests passing in pytest suite",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 69,
@@ -549,7 +549,7 @@
     "requirement": "Multi-tier testing: Unit, Integration, Adversarial, Chaos",
     "evidence": "34 test cases across all test categories in tests/",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 70,
@@ -557,7 +557,7 @@
     "requirement": "Component crash fault-injection with fail-secure assertion",
     "evidence": "Chaos test passes during LLM backend crash",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 71,
@@ -565,7 +565,7 @@
     "requirement": "GOS-001 through GOS-012 task files",
     "evidence": "Task files created: 12",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 72,
@@ -573,7 +573,7 @@
     "requirement": "Strict compliance with all hard constraints",
     "evidence": "Zero docker, zero cloud, pure Windows 11 control plane",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 73,
@@ -581,7 +581,7 @@
     "requirement": "Docs -> Core -> Windows -> Brokers -> Models -> UI -> Tests",
     "evidence": "All build order phases completed sequentially",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 74,
@@ -589,7 +589,7 @@
     "requirement": "5-stage attack chain simulation script",
     "evidence": "Flagship demo script: flagship_attack_chain.py",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 75,
@@ -597,7 +597,7 @@
     "requirement": "Local-first enterprise agentic AI security OS",
     "evidence": "Live server operational on http://127.0.0.1:7777",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   },
   {
     "section": 76,
@@ -605,6 +605,6 @@
     "requirement": "Windows Agent Security Descriptor parser & schema validator",
     "evidence": "Parsed Agent: WASD Verified Agent | Model: qwen",
     "status": "PASS",
-    "timestamp": "2026-08-27T10:36:33"
+    "timestamp": "2026-08-27T13:56:44"
   }
 ]
