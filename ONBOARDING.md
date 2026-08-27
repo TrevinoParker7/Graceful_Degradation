@@ -62,3 +62,13 @@ If an AI tool attempts a command that gets flagged (like deleting a temporary bu
 ## 🛑 Step 4: How to Turn It Off
 
 When you are done, simply **close the black terminal window**. Everything shuts down cleanly.
+
+---
+
+## 🗑️ Step 5: How to Completely Uninstall (Zero Leftovers)
+
+Because GracefulOS is 100% portable and local-first:
+- **Option A (1-Click)**: Double-click **`uninstall.bat`** to stop all processes and clean up temporary runtime files, then delete this folder.
+- **Option B (Manual)**: Close the terminal window and delete the `Graceful_Degradation` folder.
+
+*(Zero hidden background services, zero registry clutter, and zero leftovers!)*
