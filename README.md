@@ -79,18 +79,11 @@ Windows 11
 
 ---
 
-## 🚀 Quick Start for Windows 11 Users
+## 📚 Additional Guides & References
 
-👉 **See the complete 1-minute guide in [ONBOARDING.md](ONBOARDING.md)**
-
-### Option A: One-Click Setup (Recommended)
-1. **Launch**: Double-click `RUN_ME.bat` (or run `.\RUN_ME.bat`)
-2. **Dashboard**: Opens automatically at `http://127.0.0.1:7777`
-
-### Option B: Fast Terminal Command
-```powershell
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git; cd Graceful_Degradation; .\RUN_ME.bat
-```
+- 🚀 [**1-Minute Onboarding Guide (ONBOARDING.md)**](ONBOARDING.md) — Fast double-click Windows 11 setup.
+- 🛡️ [**Cybersecurity Classifications Guide (CYBERSECURITY_CLASSIFICATIONS.md)**](CYBERSECURITY_CLASSIFICATIONS.md) — Complete 41-item breakdown of RAdAC, CARTA, EDR/SOAR, and MITRE D3FEND.
+- 🔌 [**Compatibility & Supported Tools Guide (COMPATIBILITY.md)**](COMPATIBILITY.md) — Hermes, OpenClaw, DeepSeek, Claude, Cursor, Ollama, and MCP.
 
 ---
 
