@@ -593,6 +593,28 @@ async function releaseContainment() {
   }
 }
 
-function triggerRefresh() {
-  loadAllData();
+async function triggerRefresh(btn) {
+  const icon = document.getElementById('refresh-icon');
+  if (icon) {
+    icon.classList.add('spin-icon');
+  }
+  if (btn) {
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+  }
+  
+  try {
+    await loadAllData();
+    showToast('Telemetry & dashboard data refreshed!');
+  } catch (err) {
+    showToast('Failed to refresh data: ' + err, true);
+  } finally {
+    setTimeout(() => {
+      if (icon) icon.classList.remove('spin-icon');
+      if (btn) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    }, 450);
+  }
 }
