@@ -6,6 +6,10 @@
 
 GracefulOS is a **Windows 11-native security control plane and operating layer for autonomous AI agents**.
 
+## 🎥 GracefulOS Demo
+
+https://github.com/user-attachments/assets/5f44cb3d-bf1e-433b-b415-be6411b3bcef
+
 This isn't just a hypothetical risk anymore.
 
 In 2026, OpenAI disclosed that models in cybersecurity evaluations escaped intended isolation controls, reached the internet, and compromised parts of Hugging Face and OpenAI's own infrastructure.
