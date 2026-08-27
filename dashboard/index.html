@@ -271,7 +271,7 @@
 
     <!-- TAB 11: SECURITY POLICIES -->
     <section id="tab-policies" class="tab-panel">
-      <div class="glass-card">
+      <div class="glass-card" style="margin-bottom:20px;">
         <h3 style="margin-bottom:16px;">Active Declarative YAML Policies</h3>
         <p style="color:var(--text-secondary); font-size:13px; margin-bottom:12px;">Loaded policies from <span class="mono">policies/</span>:</p>
         <ul style="padding-left:20px; font-size:13px; color:var(--text-secondary); line-height:1.8;">
@@ -280,16 +280,27 @@
           <li><strong style="color:#fff;">adversarial.yaml</strong>: Red-teaming simulation policy</li>
         </ul>
       </div>
+
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">🛡️ Trusted Workspace Exceptions & Safe Allowlist (Always Allow)</h3>
+        <p style="color:var(--text-secondary); font-size:13px; margin-bottom:16px;">Add safe commands, scripts, or patterns that GracefulOS will automatically trust and allow without asking for approval:</p>
+        <div style="display:flex; gap:12px; max-width:650px; margin-bottom:20px;">
+          <input type="text" id="trusted-pattern-input" placeholder="e.g. Remove-Item .\dist\* or pytest or mcp_local_git_commit" style="flex:1; padding:8px 12px; background:rgba(0,0,0,0.3); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+          <button class="btn btn-primary" onclick="addTrustedPattern()">+ Always Allow</button>
+        </div>
+        <div id="trusted-patterns-list">Loading trusted patterns...</div>
+      </div>
     </section>
 
     <!-- TAB 12: HUMAN APPROVALS -->
     <section id="tab-approvals" class="tab-panel">
       <div class="glass-card">
-        <h3 style="margin-bottom:16px;">Pending Human-in-the-Loop Approvals</h3>
+        <h3 style="margin-bottom:16px;">Pending Human-in-the-Loop Approvals (Allow Once vs Always Allow)</h3>
+        <p style="color:var(--text-secondary); font-size:13px; margin-bottom:16px;">When an agent attempts a flagged or sensitive action, you have the final authority to grant a 1-time exception, trust it permanently in this workspace, or deny it:</p>
         <div class="table-container">
           <table>
             <thead>
-              <tr><th>Request ID</th><th>Agent</th><th>Tool</th><th>Description</th><th>Risk</th><th>Action</th></tr>
+              <tr><th>Request ID</th><th>Agent</th><th>Tool</th><th>Action Description</th><th>Risk</th><th>Authorization Decisions</th></tr>
             </thead>
             <tbody id="approvals-tbody">
               <tr><td colspan="6" style="text-align:center;">No pending approval requests.</td></tr>

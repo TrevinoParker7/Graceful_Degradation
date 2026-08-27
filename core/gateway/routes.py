@@ -192,7 +192,34 @@ async def resolve_approval(req: ApprovalDecisionRequest):
     )
     if not res:
         raise HTTPException(status_code=404, detail="Approval request not found")
+    
+    # If approved and always_trust is requested, permanently whitelist in PolicyEngine
+    if req.approved:
+        if req.always_trust:
+            pattern = res.action_description.strip() or res.tool_name
+            policy_engine.add_trusted_pattern(pattern)
+        else:
+            policy_engine.authorize_once(res.tool_name)
+
     return res.dict()
+
+@router.get("/policy/trust")
+async def get_trusted_patterns():
+    return {"trusted_patterns": policy_engine.list_trusted_patterns()}
+
+@router.post("/policy/trust")
+async def add_trusted_pattern(payload: Dict[str, Any]):
+    pattern = payload.get("pattern", "").strip()
+    if not pattern:
+        raise HTTPException(status_code=400, detail="Pattern cannot be empty")
+    policy_engine.add_trusted_pattern(pattern)
+    return {"status": "ADDED", "pattern": pattern, "trusted_patterns": policy_engine.list_trusted_patterns()}
+
+@router.delete("/policy/trust")
+async def remove_trusted_pattern(payload: Dict[str, Any]):
+    pattern = payload.get("pattern", "").strip()
+    policy_engine.remove_trusted_pattern(pattern)
+    return {"status": "REMOVED", "pattern": pattern, "trusted_patterns": policy_engine.list_trusted_patterns()}
 
 @router.get("/replay/{agent_id}")
 async def get_incident_replay(agent_id: str):

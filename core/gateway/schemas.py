@@ -28,6 +28,7 @@ class RiskSignalRequest(BaseModel):
 class ApprovalDecisionRequest(BaseModel):
     request_id: str
     approved: bool
+    always_trust: bool = False
     reviewer: str = "administrator"
     notes: str = ""
 

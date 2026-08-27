@@ -35,7 +35,8 @@ async function loadAllData() {
     fetchIncidents(),
     fetchApprovals(),
     fetchJobObjects(),
-    fetchFirewallRules()
+    fetchFirewallRules(),
+    fetchTrustedPatterns()
   ]);
 }
 
@@ -187,13 +188,16 @@ async function fetchApprovals() {
     tbody.innerHTML = approvals.map(a => `
       <tr>
         <td class="mono">${a.request_id}</td>
-        <td class="mono">${a.agent_id}</td>
-        <td class="mono">${a.tool_name}</td>
-        <td>${a.action_description}</td>
+        <td class="mono"><strong>${a.agent_id}</strong></td>
+        <td><span class="badge badge-watch">${a.tool_name}</span></td>
+        <td class="mono" style="font-size:12px;">${a.action_description}</td>
         <td><strong>${a.risk_score}</strong></td>
         <td>
-          <button class="btn btn-primary" style="padding:4px 8px; font-size:11px;" onclick="resolveApproval('${a.request_id}', true)">Approve</button>
-          <button class="btn btn-danger" style="padding:4px 8px; font-size:11px;" onclick="resolveApproval('${a.request_id}', false)">Deny</button>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn btn-primary" style="padding:4px 8px; font-size:11px;" onclick="resolveApproval('${a.request_id}', true, false)">✅ Allow Once</button>
+            <button class="btn btn-outline" style="padding:4px 8px; font-size:11px; border-color:var(--accent-cyan); color:var(--accent-cyan);" onclick="resolveApproval('${a.request_id}', true, true)">🛡️ Always Allow</button>
+            <button class="btn btn-danger" style="padding:4px 8px; font-size:11px;" onclick="resolveApproval('${a.request_id}', false, false)">❌ Deny</button>
+          </div>
         </td>
       </tr>
     `).join('');
@@ -462,7 +466,7 @@ async function runAttackDemo() {
   }
 }
 
-async function resolveApproval(requestId, approved) {
+async function resolveApproval(requestId, approved, alwaysTrust = false) {
   try {
     await fetch('/api/v1/approvals/resolve', {
       method: 'POST',
@@ -470,13 +474,97 @@ async function resolveApproval(requestId, approved) {
       body: JSON.stringify({
         request_id: requestId,
         approved: approved,
+        always_trust: alwaysTrust,
         reviewer: 'administrator'
       })
     });
-    showToast(`Approval request ${requestId} ${approved ? 'APPROVED' : 'DENIED'}`);
+    if (approved) {
+      if (alwaysTrust) {
+        showToast(`Request ${requestId} APPROVED & ALWAYS TRUSTED in this workspace!`);
+      } else {
+        showToast(`Request ${requestId} APPROVED for 1-time execution (Allow Once).`);
+      }
+    } else {
+      showToast(`Request ${requestId} DENIED. Security barrier maintained.`, true);
+    }
     loadAllData();
   } catch (err) {
     showToast('Error resolving approval: ' + err, true);
+  }
+}
+
+async function fetchTrustedPatterns() {
+  const container = document.getElementById('trusted-patterns-list');
+  if (!container) return;
+  try {
+    const res = await fetch('/api/v1/policy/trust');
+    const data = await res.json();
+    const patterns = data.trusted_patterns || [];
+
+    if (!patterns.length) {
+      container.innerHTML = '<p style="color:var(--text-secondary); font-size:13px;">No custom trusted patterns active. Add any script or command above to always allow it.</p>';
+      return;
+    }
+
+    container.innerHTML = `
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Trusted Pattern / Safe Command</th><th>Scope</th><th>Action</th><th>Status</th><th>Remove</th></tr>
+          </thead>
+          <tbody>
+            ${patterns.map(p => `
+              <tr>
+                <td class="mono"><strong>${p}</strong></td>
+                <td><span class="badge badge-watch">Workspace</span></td>
+                <td><span class="badge badge-normal">ALWAYS ALLOW</span></td>
+                <td><span class="badge badge-normal">ACTIVE</span></td>
+                <td>
+                  <button class="btn btn-danger" style="padding:3px 8px; font-size:11px;" onclick="removeTrustedPattern('${p}')">🗑️ Remove</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  } catch (err) {
+    console.error('Error fetching trusted patterns:', err);
+  }
+}
+
+async function addTrustedPattern() {
+  const input = document.getElementById('trusted-pattern-input');
+  const pattern = input.value.trim();
+  if (!pattern) {
+    showToast('Please enter a command or tool pattern to trust', true);
+    return;
+  }
+  try {
+    await fetch('/api/v1/policy/trust', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ pattern: pattern })
+    });
+    input.value = '';
+    showToast(`Added '${pattern}' to Trusted Workspace Allowlist!`);
+    loadAllData();
+  } catch (err) {
+    showToast('Error adding trusted pattern: ' + err, true);
+  }
+}
+
+async function removeTrustedPattern(pattern) {
+  try {
+    await fetch('/api/v1/policy/trust', {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ pattern: pattern })
+    });
+    showToast(`Removed '${pattern}' from Trusted Allowlist.`);
+    loadAllData();
+  } catch (err) {
+    showToast('Error removing trusted pattern: ' + err, true);
   }
 }
 
