@@ -81,27 +81,15 @@ Windows 11
 
 ## 🚀 Quick Start for Windows 11 Users
 
+👉 **See the complete 1-minute guide in [ONBOARDING.md](ONBOARDING.md)**
+
 ### Option A: One-Click Setup (Recommended)
-1. **Install**: Double-click `install.bat` (or run `.\install.bat`)
-2. **Start**: Double-click `start.bat` (or run `.\start.bat`)
-3. **Dashboard**: Opens automatically at `http://127.0.0.1:7777`
+1. **Launch**: Double-click `RUN_ME.bat` (or run `.\RUN_ME.bat`)
+2. **Dashboard**: Opens automatically at `http://127.0.0.1:7777`
 
-### Option B: Manual CLI
+### Option B: Fast Terminal Command
 ```powershell
-# 1. Install dependencies
-pip install -r requirements.txt
-
-# 2. Start the Control Plane
-python graceful.py start
-
-# 3. View the Local Dashboard
-# Open http://127.0.0.1:7777
-
-# 4. Run the Flagship 5-Stage Attack Chain Simulation
-python graceful.py attack-demo
-
-# 5. Run Full 76-Section QA Test Suite
-python scripts/plan_full_traceability_qa.py
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git; cd Graceful_Degradation; .\RUN_ME.bat
 ```
 
 ---
