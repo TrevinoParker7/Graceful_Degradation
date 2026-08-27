@@ -30,7 +30,7 @@ You do not need to type any terminal commands, configure databases, or download 
 Open PowerShell or Command Prompt and paste this line:
 
 ```powershell
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git; cd Graceful_Degradation; .\RUN_ME.bat
+git clone https://github.com/TrevinoParker7/Graceful_Degradation.git; cd Graceful_Degradation; .\RUN_ME.bat
 ```
 
 ---
