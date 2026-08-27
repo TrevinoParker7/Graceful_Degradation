@@ -4,13 +4,25 @@ Welcome to **GracefulOS** — the local-first security control plane for agentic
 
 ---
 
-## ⚡ Step 1: Start GracefulOS (1-Click)
+## ⚡ Step 1: Start GracefulOS (1-Click & Zero-Effort)
 
-### Option A: The Double-Click Way (Easiest)
-1. Download or clone this folder onto your Windows 11 machine.
-2. **Double-click `RUN_ME.bat`**.
+### Option A: The 1-Click Double-Click Way (Easiest)
 
-*(That's it! It sets up everything and opens your browser automatically)*
+#### 1. Get the folder onto your computer:
+- On GitHub, click the green **`<> Code`** button near the top right and click **`Download ZIP`**.
+- Go to your `Downloads` folder, right-click the downloaded `.zip` file, and click **`Extract All...`**, then click **`Extract`**.
+- Open the extracted **`Graceful_Degradation`** folder.
+
+#### 2. Double-click `RUN_ME.bat`:
+- Inside the folder, look for the file named **`RUN_ME.bat`** (or `RUN_ME`).
+- **Double-click it with your mouse** (just like opening an app or a game).
+
+#### 🪄 What Happens Automatically:
+- A black window will appear for a few seconds setting up the system and dependencies.
+- **Your web browser (Chrome or Edge) will automatically pop open** to the live GracefulOS Dashboard at:
+  👉 **`http://127.0.0.1:7777`**
+
+You do not need to type any terminal commands, configure databases, or download AI models!
 
 ---
 
