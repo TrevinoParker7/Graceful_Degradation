@@ -26,10 +26,10 @@ echo.
 echo [2/3] Initializing Runtime Directories & Canary Tripwires...
 python -c "
 from pathlib import Path
-from brokers.filesystem.canary import canary_manager
+from windows.filesystem.canary import canary_manager
 for d in ['runtime/data', 'runtime/logs', 'runtime/incidents', 'runtime/snapshots', 'runtime/canary']:
     Path(d).mkdir(parents=True, exist_ok=True)
-canary_manager.seed_canaries()
+canary_manager.seed_canary_files()
 print('[OK] Runtime storage initialized.')
 "
 

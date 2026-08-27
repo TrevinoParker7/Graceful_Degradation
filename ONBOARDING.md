@@ -49,6 +49,16 @@ git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git; cd Graceful_Degr
 
 ---
 
-## 🛑 Step 3: How to Turn It Off
+## 🛡️ Step 3: How to Allow Safe Commands (Allow Once vs Always Allow)
+
+If an AI tool attempts a command that gets flagged (like deleting a temporary build folder), you have complete control in the dashboard:
+- Go to **`✋ Human Approvals`** (Tab 12) to click:
+  - **`[ ✅ Allow Once ]`**: Lets the AI run the command one time.
+  - **`[ 🛡️ Always Allow ]`**: Permanently trusts the command in your workspace.
+- Go to **`📜 Security Policies`** (Tab 11) to view or remove your trusted workspace rules.
+
+---
+
+## 🛑 Step 4: How to Turn It Off
 
 When you are done, simply **close the black terminal window**. Everything shuts down cleanly.

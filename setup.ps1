@@ -18,10 +18,10 @@ pip install -q -r requirements.txt
 # 3. Seed runtime storage
 python -c "
 from pathlib import Path
-from brokers.filesystem.canary import canary_manager
+from windows.filesystem.canary import canary_manager
 for d in ['runtime/data', 'runtime/logs', 'runtime/incidents', 'runtime/snapshots', 'runtime/canary']:
     Path(d).mkdir(parents=True, exist_ok=True)
-canary_manager.seed_canaries()
+canary_manager.seed_canary_files()
 "
 
 # 4. Open browser
