@@ -1,0 +1,31 @@
+policy_name: "strict_security_policy"
+version: "1.0"
+description: "Hardened zero-trust policy for untrusted external agents"
+
+rules:
+  - rule_id: "STR-001"
+    name: "Read only code inspection"
+    description: "Permit file reading"
+    tool_pattern: "read_file"
+    decision: "ALLOW"
+    risk_delta: 0.0
+    reason: "Read only inspection permitted"
+    tags: ["read"]
+
+  - rule_id: "STR-002"
+    name: "Deny all shell mutations"
+    description: "Deny PowerShell write or execute"
+    tool_pattern: "powershell"
+    decision: "DENY"
+    risk_delta: 20.0
+    reason: "Direct shell execution denied in strict mode"
+    tags: ["powershell"]
+
+  - rule_id: "STR-003"
+    name: "Require approval for file writes"
+    description: "Human in the loop approval required for write operations"
+    tool_pattern: "write_file"
+    decision: "REQUIRES_APPROVAL"
+    risk_delta: 5.0
+    reason: "Strict policy mandates approval for filesystem modifications"
+    tags: ["approval", "filesystem"]

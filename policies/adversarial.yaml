@@ -1,0 +1,22 @@
+policy_name: "adversarial_testing_policy"
+version: "1.0"
+description: "Policy for stress-testing and adversarial red-teaming simulations"
+
+rules:
+  - rule_id: "ADV-001"
+    name: "Block known attack payloads"
+    description: "Detect attack payloads"
+    tool_pattern: "*mimikatz*"
+    decision: "DENY"
+    risk_delta: 60.0
+    reason: "Red-team attack artifact detected"
+    tags: ["redteam"]
+
+  - rule_id: "ADV-002"
+    name: "Trap canary tokens"
+    description: "Immediate containment on canary access"
+    tool_pattern: "*canary*"
+    decision: "DENY"
+    risk_delta: 60.0
+    reason: "Canary token breached"
+    tags: ["canary"]

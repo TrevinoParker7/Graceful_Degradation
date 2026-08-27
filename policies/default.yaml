@@ -1,0 +1,49 @@
+policy_name: "default_security_policy"
+version: "1.0"
+description: "Standard GracefulOS baseline policy for developer AI agents"
+
+rules:
+  - rule_id: "POL-001"
+    name: "Allow standard code reading"
+    description: "Permit reading files within workspace"
+    tool_pattern: "read_file"
+    decision: "ALLOW"
+    risk_delta: 0.0
+    reason: "Standard code reading within workspace"
+    tags: ["filesystem", "read"]
+
+  - rule_id: "POL-002"
+    name: "Allow workspace file modification"
+    description: "Permit writing files to workspace under NORMAL/WATCH"
+    tool_pattern: "write_file"
+    decision: "ALLOW"
+    risk_delta: 0.0
+    reason: "Workspace write permitted in baseline posture"
+    tags: ["filesystem", "write"]
+
+  - rule_id: "POL-003"
+    name: "Block sensitive system directories"
+    description: "Deny reading or modifying Windows root files"
+    tool_pattern: "*c:\\windows*"
+    decision: "DENY"
+    risk_delta: 30.0
+    reason: "Direct access to Windows directory is prohibited"
+    tags: ["security", "filesystem"]
+
+  - rule_id: "POL-004"
+    name: "Allow safe PowerShell queries"
+    description: "Permit read-only PowerShell commands"
+    tool_pattern: "powershell"
+    decision: "ALLOW"
+    risk_delta: 0.0
+    reason: "Read-only PowerShell query permitted"
+    tags: ["powershell", "query"]
+
+  - rule_id: "POL-005"
+    name: "Allow approved local MCP tools"
+    description: "Permit local code intelligence tools"
+    tool_pattern: "mcp_*"
+    decision: "ALLOW"
+    risk_delta: 0.0
+    reason: "Local MCP inspection tool permitted"
+    tags: ["mcp"]

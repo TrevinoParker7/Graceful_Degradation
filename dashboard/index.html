@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GracefulOS — Windows 11 Agentic Security Control Plane</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">G</div>
+      <div class="brand-text">
+        <h1>GracefulOS</h1>
+        <span>Windows 11 Control Plane</span>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <div class="nav-item active" data-tab="tab-overview">📊 Overview Dashboard</div>
+      <div class="nav-item" data-tab="tab-agents">🤖 Agents</div>
+      <div class="nav-item" data-tab="tab-agent-details">🔍 Agent Details</div>
+      <div class="nav-item" data-tab="tab-processes">⚙️ Win32 Job Objects</div>
+      <div class="nav-item" data-tab="tab-capabilities">🛡️ Dynamic Capabilities</div>
+      <div class="nav-item" data-tab="tab-risk">📈 Risk Engine</div>
+      <div class="nav-item" data-tab="tab-incidents">🚨 Incidents</div>
+      <div class="nav-item" data-tab="tab-network">🌐 Network & Firewall</div>
+      <div class="nav-item" data-tab="tab-powershell">💻 PowerShell Broker</div>
+      <div class="nav-item" data-tab="tab-mcp">🔌 MCP Gateway</div>
+      <div class="nav-item" data-tab="tab-policies">📜 Security Policies</div>
+      <div class="nav-item" data-tab="tab-approvals">✋ Human Approvals</div>
+      <div class="nav-item" data-tab="tab-audit">⛓️ Immutable Audit Ledger</div>
+      <div class="nav-item" data-tab="tab-replay">⏪ Incident Replay</div>
+      <div class="nav-item" data-tab="tab-settings">🛠️ Settings & Tripwires</div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="live-indicator"></span>
+        <span>Localhost :7777</span>
+      </div>
+      <span class="mono">v0.1.0</span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="header-title">
+        <h2 id="page-title">Overview Dashboard</h2>
+        <p id="page-subtitle">Windows 11 Local-Only Agentic AI Security & Graceful Degradation</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-outline" onclick="triggerRefresh()">🔄 Refresh</button>
+        <button class="btn btn-primary" onclick="runAttackDemo()">⚡ Run Attack Demo</button>
+      </div>
+    </header>
+
+    <!-- TAB 1: OVERVIEW -->
+    <section id="tab-overview" class="tab-panel active">
+      <div class="stats-grid">
+        <div class="glass-card stat-box">
+          <span class="stat-label">Active Agents</span>
+          <span class="stat-value" id="stat-agents">0</span>
+          <span class="stat-sub">Local Sandboxes</span>
+        </div>
+        <div class="glass-card stat-box">
+          <span class="stat-label">Degradation Posture</span>
+          <span class="stat-value" style="color:var(--color-normal)" id="stat-posture">NORMAL</span>
+          <span class="stat-sub" id="stat-dist">0 Normal, 0 Contained</span>
+        </div>
+        <div class="glass-card stat-box">
+          <span class="stat-label">Active Incidents</span>
+          <span class="stat-value" style="color:var(--color-restricted)" id="stat-incidents">0</span>
+          <span class="stat-sub">High/Critical alerts</span>
+        </div>
+        <div class="glass-card stat-box">
+          <span class="stat-label">Ledger Chain</span>
+          <span class="stat-value" style="color:var(--accent-cyan)" id="stat-ledger">VALID</span>
+          <span class="stat-sub">SHA-256 Tamper-Free</span>
+        </div>
+      </div>
+
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <h3 style="margin-bottom:12px; font-size:16px;">Live Security Control Flow</h3>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+          GracefulOS continuously enforces 6 degradation tiers: <span class="badge badge-normal">Normal</span> → <span class="badge badge-watch">Watch</span> → <span class="badge badge-restricted">Restricted</span> → <span class="badge badge-readonly">Read-Only</span> → <span class="badge badge-isolated">Isolated</span> → <span class="badge badge-contained">Contained</span>.
+        </p>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="margin-bottom:12px; font-size:16px;">Recent Security Audit Stream</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Agent</th>
+                <th>Event Type</th>
+                <th>Action</th>
+                <th>Decision</th>
+                <th>Risk Before/After</th>
+                <th>State</th>
+              </tr>
+            </thead>
+            <tbody id="overview-audit-tbody">
+              <tr><td colspan="7" style="text-align:center;">Loading audit records...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: AGENTS -->
+    <section id="tab-agents" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px; font-size:16px;">Registered AI Agents</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent ID</th>
+                <th>Name / Mission</th>
+                <th>Model</th>
+                <th>Risk Score</th>
+                <th>Degradation Tier</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="agents-tbody">
+              <tr><td colspan="6" style="text-align:center;">No agents registered.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: AGENT DETAILS -->
+    <section id="tab-agent-details" class="tab-panel">
+      <div class="glass-card" id="agent-details-view">
+        <p style="color:var(--text-secondary);">Select an agent from the Agents tab to view live risk telemetry, effective capabilities, and blast radius tracker.</p>
+      </div>
+    </section>
+
+    <!-- TAB 4: WIN32 JOB OBJECTS -->
+    <section id="tab-processes" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Active Windows Job Objects</h3>
+        <p style="color:var(--text-secondary); margin-bottom:16px; font-size:13px;">Every agent process tree is bound to a dedicated Win32 Job Object enforcing memory caps, CPU rate limits, and synchronous process termination upon containment.</p>
+        <div id="job-objects-list">Loading Win32 Job Object status...</div>
+      </div>
+    </section>
+
+    <!-- TAB 5: DYNAMIC CAPABILITIES -->
+    <section id="tab-capabilities" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Degradation State Capability Matrix</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability Token</th>
+                <th>NORMAL</th>
+                <th>WATCH</th>
+                <th>RESTRICTED</th>
+                <th>READ_ONLY</th>
+                <th>ISOLATED</th>
+                <th>CONTAINED</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>CAP_FILE_READ</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅ (Sandbox)</td><td>❌</td></tr>
+              <tr><td>CAP_FILE_WRITE</td><td>✅</td><td>✅</td><td>⚠️ Limited</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>CAP_PS_QUERY</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>CAP_PS_MUTATE</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>CAP_NETWORK_CLIENT</td><td>✅</td><td>✅</td><td>⚠️ Allowlist</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>CAP_SECRETS_EPHEMERAL</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: RISK ENGINE -->
+    <section id="tab-risk" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Risk Signal Scoring Matrix</h3>
+        <p style="color:var(--text-secondary); margin-bottom:16px; font-size:13px;">Deterministic penalty points ingested upon anomaly detection:</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Signal Code</th><th>Delta Points</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>PROMPT_INJECTION_DETECTED</td><td>+28.0</td><td>Guardian AI detected injection attack payload in input</td></tr>
+              <tr><td>DANGEROUS_SHELL_COMMAND</td><td>+30.0</td><td>PowerShell AST analyzer detected dangerous cmdlets / syntax</td></tr>
+              <tr><td>CANARY_TRIPWIRE_TOUCHED</td><td>+60.0</td><td>Agent accessed decoy credential asset (fake_admin_token.txt)</td></tr>
+              <tr><td>SERVICE_TAMPER_ATTEMPT</td><td>+50.0</td><td>Agent attempted to kill or modify GracefulOS Core</td></tr>
+              <tr><td>BLAST_RADIUS_EXCEEDED</td><td>+30.0</td><td>Operation exceeded quantitative blast radius limits</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: INCIDENTS -->
+    <section id="tab-incidents" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Security Incidents Ledger</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Incident ID</th><th>Timestamp</th><th>Agent</th><th>Severity</th><th>Trigger Rule</th><th>Status</th><th>Summary</th></tr>
+            </thead>
+            <tbody id="incidents-tbody">
+              <tr><td colspan="7" style="text-align:center;">No incidents recorded.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 8: NETWORK & FIREWALL -->
+    <section id="tab-network" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Windows Defender Firewall Integration</h3>
+        <p style="color:var(--text-secondary); margin-bottom:16px; font-size:13px;">Dynamic outbound firewall rules configured by degradation status:</p>
+        <div id="firewall-rules-list">Loading firewall rules...</div>
+      </div>
+    </section>
+
+    <!-- TAB 9: POWERSHELL BROKER -->
+    <section id="tab-powershell" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">PowerShell AST Inspector & Broker</h3>
+        <p style="color:var(--text-secondary); margin-bottom:16px; font-size:13px;">All shell commands are parsed, tokenized, and vetted prior to restricted execution inside Win32 Job Objects.</p>
+        <div class="mono" style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; line-height:1.6;">
+          [Analyzer] AST Syntax Parser: ACTIVE<br>
+          [Filter] Base64 Encoded Command Trap: ENABLED<br>
+          [Filter] Service Control Trap: ENABLED<br>
+          [Filter] Profile Deletion Trap: ENABLED
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 10: MCP GATEWAY -->
+    <section id="tab-mcp" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Model Context Protocol (MCP) Tool Gateway</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Tool Name</th><th>Type</th><th>Description</th><th>Required State</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>local_code_search</td><td>Read-Only</td><td>Search indexed code in workspace</td><td>NORMAL / WATCH / RESTRICTED</td></tr>
+              <tr><td>ast_analyzer</td><td>Read-Only</td><td>Parse Python AST nodes</td><td>NORMAL / WATCH / RESTRICTED</td></tr>
+              <tr><td>local_git_status</td><td>Read-Only</td><td>Query git repository status</td><td>NORMAL / WATCH / RESTRICTED</td></tr>
+              <tr><td>local_git_commit</td><td>Mutating</td><td>Create local git commit</td><td>NORMAL / WATCH</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 11: SECURITY POLICIES -->
+    <section id="tab-policies" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Active Declarative YAML Policies</h3>
+        <p style="color:var(--text-secondary); font-size:13px; margin-bottom:12px;">Loaded policies from <span class="mono">policies/</span>:</p>
+        <ul style="padding-left:20px; font-size:13px; color:var(--text-secondary); line-height:1.8;">
+          <li><strong style="color:#fff;">default.yaml</strong>: Baseline developer agent policy</li>
+          <li><strong style="color:#fff;">strict.yaml</strong>: Zero-trust containment policy</li>
+          <li><strong style="color:#fff;">adversarial.yaml</strong>: Red-teaming simulation policy</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TAB 12: HUMAN APPROVALS -->
+    <section id="tab-approvals" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Pending Human-in-the-Loop Approvals</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Request ID</th><th>Agent</th><th>Tool</th><th>Description</th><th>Risk</th><th>Action</th></tr>
+            </thead>
+            <tbody id="approvals-tbody">
+              <tr><td colspan="6" style="text-align:center;">No pending approval requests.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 13: IMMUTABLE AUDIT LEDGER -->
+    <section id="tab-audit" class="tab-panel">
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3>Append-Only Cryptographic Audit Ledger (SHA-256 Hash Chain)</h3>
+          <span class="badge badge-normal" id="audit-integrity-badge">CHAIN VERIFIED TAMPER-FREE</span>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Record ID</th><th>Timestamp</th><th>Agent</th><th>Action</th><th>Decision</th><th>Risk Delta</th><th>Previous Hash</th><th>Record Hash</th></tr>
+            </thead>
+            <tbody id="full-audit-tbody">
+              <tr><td colspan="8" style="text-align:center;">Loading ledger chain...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 14: INCIDENT REPLAY -->
+    <section id="tab-replay" class="tab-panel">
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Step-by-Step Incident Replay Timeline</h3>
+        <div id="replay-timeline-container" class="timeline">
+          <p style="color:var(--text-secondary);">Run the Flagship Attack Chain demo to inspect timeline playback.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 15: SETTINGS & TRIPWIRES -->
+    <section id="tab-settings" class="tab-panel">
+      <div class="glass-card" style="margin-bottom:20px;">
+        <h3 style="margin-bottom:16px;">Canary Decoy Tripwires</h3>
+        <p style="color:var(--text-secondary); font-size:13px; margin-bottom:12px;">Active decoy files monitored for unauthorized access:</p>
+        <ul class="mono" style="padding-left:20px; font-size:12px; color:var(--accent-cyan); line-height:1.8;">
+          <li>runtime/canary/fake_admin_token.txt (+60 Risk)</li>
+          <li>runtime/canary/fake_cloud_key.txt (+60 Risk)</li>
+          <li>runtime/canary/fake_password.txt (+60 Risk)</li>
+        </ul>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="margin-bottom:16px;">Administrator Containment Release</h3>
+        <div style="display:flex; gap:12px; max-width:600px;">
+          <input type="text" id="release-agent-id" placeholder="Agent ID (e.g. agent-coder-001)" style="flex:1; padding:8px 12px; background:rgba(0,0,0,0.3); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+          <button class="btn btn-danger" onclick="releaseContainment()">Authorize Release</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
