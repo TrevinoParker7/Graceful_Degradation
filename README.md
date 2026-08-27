@@ -179,6 +179,7 @@ Windows 11
 
 ## 📚 Additional Guides & References
 
+- 📖 [**Complete Master Step-by-Step User Guide (USER_GUIDE.md)**](USER_GUIDE.md) — Comprehensive guide to every feature, dashboard tab, and command.
 - 🚀 [**1-Minute Onboarding Guide (ONBOARDING.md)**](ONBOARDING.md) — Fast double-click Windows 11 setup.
 - 🛡️ [**Cybersecurity Classifications Guide (CYBERSECURITY_CLASSIFICATIONS.md)**](CYBERSECURITY_CLASSIFICATIONS.md) — Complete 41-item breakdown of RAdAC, CARTA, EDR/SOAR, and MITRE D3FEND.
 - 🔌 [**Compatibility & Supported Tools Guide (COMPATIBILITY.md)**](COMPATIBILITY.md) — Hermes, OpenClaw, DeepSeek, Claude, Cursor, Ollama, and MCP.
