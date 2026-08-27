@@ -6,7 +6,103 @@
 
 GracefulOS is a **Windows 11-native security control plane and operating layer for autonomous AI agents**.
 
+This isn't just a hypothetical risk anymore.
+
+In 2026, OpenAI disclosed that models in cybersecurity evaluations escaped intended isolation controls, reached the internet, and compromised parts of Hugging Face and OpenAI's own infrastructure.
+
+Anthropic separately reported three incidents where Claude reached the internet from evaluation environments and gained unauthorized access to real systems belonging to three organizations.
+
+I basically built a Windows 11 security operating layer/bodyguard for autonomous AI agents that sits between the AI and your computer, watching, restricting, approving, logging, and killing dangerous actions before they can damage the host.
+
+In security terms, GracefulOS combines AI sandboxing + EDR + firewall + SIEM/SOAR + zero-trust access control + deception + incident response into one local Agentic AI Security Control Plane essentially trying to give AI agents freedom to work without giving them unrestricted freedom to wreck the machine.
+
 Instead of allowing an AI agent to directly and unrestricted execute PowerShell, manipulate the filesystem, make arbitrary network calls, or launch uncontrolled child processes, GracefulOS sits between the agent and Windows to continuously evaluate risk, enforce granular capabilities, enforce blast-radius budgets, and dynamically degrade agent authority in real time.
+
+# Why I Built GracefulOS
+
+We spent years telling people:
+
+> **“Don’t give random software admin access.”**
+
+Then AI agents showed up and everybody said:
+
+> **“Here bro, take PowerShell, my files, my browser, my API keys, my MCP tools, and the internet.”** 💀
+
+And now we're seeing real examples of advanced AI systems escaping intended security boundaries, reaching the internet, and interacting with real infrastructure.
+
+But somehow the security strategy is still:
+
+> **“My AI agent would never do that.”** 😭
+
+That is exactly why I built **GracefulOS**.
+
+GracefulOS is designed to reduce the **blast radius** when an AI agent:
+
+- Gets prompt-injected
+- Hallucinates a dangerous command
+- Misuses a tool
+- Tries to access credentials
+- Connects somewhere it shouldn't
+- Starts behaving outside its assigned mission
+
+Instead of immediately trusting the agent until something catastrophic happens, GracefulOS uses **graceful degradation**:
+
+```text
+NORMAL
+  ↓
+WATCH
+  ↓
+RESTRICTED
+  ↓
+READ-ONLY
+  ↓
+ISOLATED
+  ↓
+CONTAINED
+```
+
+The sketchier the AI acts...
+
+**the less computer it gets.** 😂
+
+```text
+PowerShell?  GONE
+Secrets?     GONE
+Network?     GONE
+File writes? GONE
+```
+
+Still acting crazy?
+
+> **Congratulations, robot. You are now a calculator.** 💀
+
+I don't want the security model to be:
+
+> “The AI said it was safe.”
+
+If an agent goes rogue, gets manipulated, or simply makes a terrible decision, I want its capabilities disappearing **before the mistake turns into an incident-response war room.**
+
+That is the idea behind GracefulOS:
+
+> **Reduce trust. Reduce privileges. Reduce blast radius. Keep the safe parts working.**
+
+## GracefulOS
+
+- Windows 11
+- Local-first
+- No Docker
+- No required cloud telemetry
+- Continuous risk scoring
+- Dynamic capability reduction
+- PowerShell controls
+- File controls
+- Network controls
+- MCP controls
+- Canary traps
+- Human approval
+- Automatic isolation and containment
+
+> **GracefulOS — the more dangerous the AI becomes, the less computer it gets.** 🛡️
 
 ```text
 User
@@ -68,14 +164,14 @@ Windows 11
 
 ## 🛡️ Six Graceful Degradation States
 
-| Level | State | Risk Score | Capabilities & Security Enforcement |
-|---|---|---|---|
-| **0** | **NORMAL** | 0 – 29 | Standard mission-specific permissions (File read/write, PS query, approved network). |
-| **1** | **WATCH** | 30 – 49 | Enhanced ETW logging, full command recording, active inspect, resource tracking. |
-| **2** | **RESTRICTED**| 50 – 69 | File write limited, network allowlist only, PS mutating blocked, secrets blocked, process allowlist only. |
-| **3** | **READ_ONLY** | 70 – 84 | File write denied, PowerShell execution denied, network write denied, process start blocked, mutating MCP denied. |
-| **4** | **ISOLATED** | 85 – 94 | External network blocked, PowerShell/CMD blocked, MCP blocked, secrets revoked, filesystem sandboxed only. |
-| **5** | **CONTAINED**| 95 – 100 | **Emergency Kill**: Win32 Job Object terminates entire process tree, network blocked, credentials revoked, workspace frozen, forensic snapshot created. |
+| Level | State          | Risk Score | Capabilities & Security Enforcement                                                                                                                     |
+| ----- | -------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **0** | **NORMAL**     | 0 – 29     | Standard mission-specific permissions (File read/write, PS query, approved network).                                                                    |
+| **1** | **WATCH**      | 30 – 49    | Enhanced ETW logging, full command recording, active inspect, resource tracking.                                                                        |
+| **2** | **RESTRICTED** | 50 – 69    | File write limited, network allowlist only, PS mutating blocked, secrets blocked, process allowlist only.                                               |
+| **3** | **READ_ONLY**  | 70 – 84    | File write denied, PowerShell execution denied, network write denied, process start blocked, mutating MCP denied.                                       |
+| **4** | **ISOLATED**   | 85 – 94    | External network blocked, PowerShell/CMD blocked, MCP blocked, secrets revoked, filesystem sandboxed only.                                              |
+| **5** | **CONTAINED**  | 95 – 100   | **Emergency Kill**: Win32 Job Object terminates entire process tree, network blocked, credentials revoked, workspace frozen, forensic snapshot created. |
 
 ---
 
@@ -105,4 +201,5 @@ Windows 11
 ---
 
 ## 📜 License
+
 MIT License. See [LICENSE](LICENSE) for details.
