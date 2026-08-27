@@ -1,6 +1,6 @@
 # 🚀 GracefulOS: Windows 11 1-Minute Onboarding Guide
 
-Welcome to **GracefulOS** — the local-first security control plane for agentic AI on Windows 11.
+Welcome to **GracefulOS**  the local-first security control plane for agentic AI on Windows 11.
 
 ---
 
