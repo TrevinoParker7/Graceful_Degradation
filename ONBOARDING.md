@@ -46,31 +46,30 @@ git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git; cd Graceful_Degr
 
 ---
 
-## 🤖 How to Connect Any AI Agent (For Developers)
+## 🤖 How to Protect Any AI Script (100% Automatic — No Code Changes!)
 
-*(Note: Regular users don't need to write any code! This section is only for developers building AI programs.)*
+You do **NOT** have to modify your AI code or configure API calls! You can run and sandbox ANY Python script or AI program automatically:
 
-### 🎯 What is this for? (The Problem & The Solution)
-- **The Problem**: If an AI runs directly on your Windows PC with full access, a confused or hacked AI could delete your files, run dangerous PowerShell scripts, or steal passwords.
-- **The GracefulOS Solution**: GracefulOS acts like a **Security Guard** standing between the AI and Windows 11. The AI must ask GracefulOS for permission before touching the computer.
-
-```text
-[ AI Agent ] ──► "Can I read this file?" ──► [ GracefulOS Security Guard ] ──► [ Windows 11 ]
-                                                    │
-                                     ┌──────────────┴──────────────┐
-                                     ▼                             ▼
-                            If SAFE: "ALLOW"              If DANGEROUS: "DENY & FREEZE"
+```powershell
+python graceful.py run python my_ai_script.py
 ```
+
+### 🪄 What happens automatically:
+1. GracefulOS automatically registers your AI agent in the security control plane.
+2. GracefulOS automatically binds the process to a native **Windows 11 Job Object**.
+3. It sets memory limits, tracks CPU, and enables the emergency kill-switch.
+4. Your script runs normally, and you can watch it live on the dashboard at `http://127.0.0.1:7777`!
 
 ---
 
-### 🔍 Step-by-Step Code Example:
+## 🛠️ Advanced: Direct REST API (For Custom Integrations)
 
-#### Step 1: The AI introduces itself to GracefulOS
+If you want your custom AI agent to talk directly to GracefulOS over HTTP:
+
 ```python
 import requests
 
-# The AI tells GracefulOS its name and mission
+# 1. Register the AI agent
 requests.post("http://127.0.0.1:7777/api/v1/agents/register", json={
     "agent_id": "my-ai-coder",
     "name": "Local Coding Assistant",

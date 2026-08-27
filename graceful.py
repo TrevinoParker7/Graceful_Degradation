@@ -14,6 +14,7 @@ from core.risk.engine import risk_engine
 from core.risk.state_machine import DegradationState
 from simulations.flagship_attack_chain import run_flagship_demo
 from windows.filesystem.canary import canary_manager
+from windows.job_objects.limits import JobResourceLimits
 
 def cmd_start(args):
     print(f"Starting GracefulOS Control Plane on http://{config.host}:{config.port} ...")
@@ -49,6 +50,47 @@ def cmd_release(args):
     )
     print(f"Agent {args.agent_id} released: {res}")
 
+def cmd_run(args):
+    """Automatically launches and protects any script, AI bot, or command inside GracefulOS."""
+    import subprocess, time, uuid, os
+    from windows.job_objects.job import WindowsJobObject
+    from core.capabilities.manager import capability_manager
+    from core.capabilities.descriptor import WindowsAgentSecurityDescriptor, AgentCapabilities
+    
+    agent_id = f"auto-agent-{uuid.uuid4().hex[:6]}"
+    target_cmd = args.target
+    print(f"[*] Auto-Protecting target command: '{' '.join(target_cmd)}'")
+    print(f"[*] Registered Agent ID: {agent_id}")
+
+    # Auto-register agent descriptor
+    desc = WindowsAgentSecurityDescriptor(
+        id=agent_id,
+        name="Auto-Protected Process",
+        mission=f"Execute: {' '.join(target_cmd)}",
+        model="auto-detected"
+    )
+    capability_manager.register_agent_descriptor(desc)
+
+    # Bind to Win32 Job Object
+    limits = JobResourceLimits(max_memory_mb=512, kill_on_job_close=True)
+    job = WindowsJobObject(f"GracefulOS_Job_{agent_id}", limits=limits)
+    
+    env = os.environ.copy()
+    env["GRACEFULOS_AGENT_ID"] = agent_id
+    env["GRACEFULOS_ENDPOINT"] = f"http://{config.host}:{config.port}"
+
+    proc = subprocess.Popen(target_cmd, env=env)
+    job.assign_process(proc.pid)
+    print(f"[OK] Process spawned (PID {proc.pid}) and attached to Windows Job Object.")
+
+    try:
+        proc.wait()
+    except KeyboardInterrupt:
+        print("\n[!] Stopping auto-protected process...")
+        job.terminate_all(exit_code=1)
+    finally:
+        job.close()
+
 def cmd_test(args):
     import subprocess
     cmd = [sys.executable, "-m", "pytest", "tests/", "-v"]
@@ -62,6 +104,11 @@ def main():
     # start
     sub_start = subparsers.add_parser("start", help="Start the GracefulOS Control Plane and Dashboard")
     sub_start.set_defaults(func=cmd_start)
+
+    # run (auto-protect)
+    sub_run = subparsers.add_parser("run", help="Auto-protect and sandbox any script or command inside GracefulOS")
+    sub_run.add_argument("target", nargs=argparse.REMAINDER, help="Target script or command (e.g. python agent.py)")
+    sub_run.set_defaults(func=cmd_run)
 
     # attack-demo
     sub_demo = subparsers.add_parser("attack-demo", help="Run the Flagship 5-Stage Attack Chain demo")
